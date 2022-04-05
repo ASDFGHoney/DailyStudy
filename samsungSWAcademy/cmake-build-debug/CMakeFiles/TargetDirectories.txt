@@ -1,0 +1,3 @@
+/Users/machoney/study/samsungSWAcademy/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/machoney/study/samsungSWAcademy/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/machoney/study/samsungSWAcademy/cmake-build-debug/CMakeFiles/samsungSWAcademy.dir

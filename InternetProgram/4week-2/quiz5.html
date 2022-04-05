@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>quiz5</title>
+  </head>
+  <body>
+    <script>
+      const a = prompt("100 미만의 정수만 입력 : ");
+
+      if (isNaN(a)) {
+        alert(5050);
+      } else if (a > 100) {
+        alert("정수" + a + "는 100보다 작지 않습니다.");
+      } else if (a < 1) {
+        alert("정수" + a + "는 1보다 크지 않습니다.");
+      } else {
+        var i = 1,
+          sum = 0;
+        while (i <= a) {
+          sum += i;
+          i++;
+        }
+        alert("0에서 " + a + "까지 합은 " + sum);
+      }
+    </script>
+  </body>
+</html>

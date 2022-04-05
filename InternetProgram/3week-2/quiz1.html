@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      img {
+        width: 150px;
+        height: 200px;
+        position: absolute;
+      }
+
+      #imgs > #dw {
+        opacity: 0;
+      }
+
+      #imgs:hover > #dw {
+        opacity: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>:hover 활용</h1>
+    <hr />
+    <p>마우스를 올리면 카드의 앞면이 보인다</p>
+    <div id="imgs">
+        <img id="up" src="imgBack.png" />
+        <img id="dw" src="imgFront.png" />
+
+    </div>
+  </body>
+</html>

@@ -1,0 +1,2 @@
+# nomadcoin-clone
+nomadcoders

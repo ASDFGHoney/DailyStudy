@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>덧셈 계산 게임</title>
+
+    <script>
+      function getRandomInt(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min + 1)) + min; //최댓값도 포함, 최솟값도 포함
+      }
+      
+    </script>
+  </head>
+  <body>
+
+    <h1>덧셈 계산기</h1>
+    <hr />
+    <div id="ques"></div>
+    <script>
+      x = getRandomInt(1, 100);
+      y = getRandomInt(1, 100);
+      ans = x + y;
+      var m = document.getElementById("ques");
+      m.innerHTML = x + "+" + y + "=";
+    </script>
+    
+    <script>
+      function calc() {
+        if (document.calculator.total.value == ans) {
+          alert("결과가 정확합니다");
+        } else {
+          alert("결과가 틀렸습니다");
+        }
+      }
+    </script>
+
+    <form name="calculator">
+      덧셈 결과 : <input type="text" name="total" />
+      <input type="button" value="결과확인" onclick="calc();" />
+    </form>
+  </body>
+</html>

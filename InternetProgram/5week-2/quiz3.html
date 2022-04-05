@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>adder</title>
+
+    <script>
+      function calc(type) {
+        x = Number(document.calculator.number1.value);
+        y = Number(document.calculator.number2.value);
+        
+        document.calculator.total.value = x+y;
+      }
+    </script>
+  </head>
+  <body>
+    <h1>덧셈 계산기</h1>
+    <form name="calculator">
+      첫 번째 정수: <input type="text" name="number1" /><br />
+      두 번째 정수: <input type="text" name="number2" /><br />
+      합계: <input type="text" name="total" /><br />
+      <input type="button" value="계산" onclick="calc();" />
+    </form>
+  </body>
+</html>

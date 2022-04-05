@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>quiz5</title>
+    <style>
+        div{
+            width: 200px;
+            height: 100px;
+            position: absolute;
+        }
+        #bo1{
+            background-color: yellow;
+            top: 0px;
+            left: 0px;
+            z-index: 10;
+        }
+        #bo2{
+            background-color: red;
+            top: 30px;
+            left: 30px;
+            z-index: 9;
+        }
+        #bo3{
+            background-color: green;
+            top: 60px;
+            left: 60px;
+            z-index: 8;
+        }
+        #bo4{
+            top: 200px;
+            left: 200px;
+            z-index: 6;
+        }
+        p {
+            position: absolute;
+            top: 270px;
+            z-index: 7;
+        }
+        img{
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div id="bo1">
+        box #1
+    </div>
+
+    <div id="bo2">
+        box #2
+    </div>
+
+    <div id="bo3">
+        box #3
+    </div>
+    <div id="bo4">
+        <img src="dog.png">
+    </div>
+    <p>img요소가 -1 글자요소의 뒤에 위치한다. box width 200 heigh 100</p>
+</body>
+</html>

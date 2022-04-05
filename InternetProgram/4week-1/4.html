@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>화씨 계산기</title>
+  </head>
+  <body>
+    <script>
+      var ret = prompt("섭시온도를 입력하세요", "0");
+      if (ret == null) {
+        // 취소 버튼이나 다이얼로그를 닫은 경우
+      } else if (ret == "") {
+        // 문자열 입력 없이 확인 버튼 누른 경우
+      } else {
+        ret = ret * 1.8 + 32;
+        confirm(ret);
+      }
+    </script>
+  </body>
+</html>

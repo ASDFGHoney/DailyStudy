@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>1time</title>
+    <style>
+      body {
+        background-color: orange;
+      }
+    </style>
+    <script>
+      function setClock() {
+        var now = new Date();
+        var s =
+          now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
+        document.getElementById("clock").innerHTML = s;
+        setTimeout("setClock()", 1000);
+        if(now.getHours() >= 12){
+            document.body.style.backgroundColor = 'orange';
+        }else{
+            document.body.style.backgroundColor = 'lightskyblue';
+        }
+        
+      }
+      setClock();
+    </script>
+  </head>
+  <body>
+    <h1>오전이면 lightskyblue, 오후이면 orange 배경</h1>
+    <hr />
+    <div id="clock"></div>
+    <script>
+      function setClock() {
+        var now = new Date();
+        var s =
+          "Current Time : " +
+          now.getHours() +
+          ":" +
+          now.getMinutes() +
+          ":" +
+          now.getSeconds();
+        document.getElementById("clock").innerHTML = s;
+        setTimeout("setClock()", 1000);
+      }
+      setClock();
+    </script>
+  </body>
+</html>

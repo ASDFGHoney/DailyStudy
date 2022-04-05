@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2guess</title>
+  </head>
+  <body>
+    <script>
+      var solution = 53;
+      var time = 0;
+      function test() {
+        try {
+          var x = document.getElementById("number").value;
+          time = time + 1;
+          if (x == "") throw "입력없음";
+          if (isNaN(x)) throw "숫자가 아님";
+          if (x > solution) throw "너무 큼";
+          if (x < solution) throw "너무 작음";
+          if (x == solution) throw "성공";
+        } catch (error) {
+          var y = document.getElementById("message");
+          var z = document.getElementById("time");
+          z.innerHTML = time;
+          y.innerHTML = error;
+        }
+      }
+    </script>
+    <h1>숫자 맞추기 게임</h1>
+    <p>이 게임은 컴퓨터가 생성한 숫자를 맞추는 게임입니다. 숫자는 1부터 100사이에 있습니다.</p>
+    <div>
+      숫자:
+      <input id="number" type="text" />
+      <button type="button" onclick="test()">확인</button>
+    </div>
+    <br />
+    <div style="float: left; margin-right: 5px">추측횟수 :</div>
+    <div
+      id="time"
+      style="
+        width: 5em;
+        height: 1.2em;
+        border: 1px solid black;
+        float: left;
+        margin-right: 10px;
+      "
+    ></div>
+    <div style="float: left; margin-right: 5px">힌트 :</div>
+    <div
+      id="message"
+      style="width: 5em; height: 1.2em; border: 1px solid black; float: left"
+    ></div>
+    <div style="clear: both"></div>
+  </body>
+</html>

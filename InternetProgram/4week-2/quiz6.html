@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>quiz6</title>
+
+    <script>
+      const a = prompt("수식을 입력하세요, = 포함하지 않음.");
+    </script>
+  </head>
+  <body>
+    <h1>수식 계산하기</h1>
+    <hr />
+    <script>
+      if (a === "") {
+        document.write("입력된 수식이 없습니다.");
+      } else {
+        document.write(a);
+        document.write(" = ");
+        document.write(eval(a));
+      }
+    </script>
+  </body>
+</html>
