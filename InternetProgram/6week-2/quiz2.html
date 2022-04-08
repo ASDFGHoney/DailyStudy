@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>visibility</title>
+  </head>
+  <body>
+    <h1>
+      다음 빈 곳에 숨은 단어?
+      <button id="butt" onclick="ButtToggle()" value="off">show/hide</button>
+    </h1>
+
+    <hr />
+
+    <ul>
+      <li>
+        I (
+        <span style="color: blue; visibility: hidden">love</span>
+        ) you.
+      </li>
+      <li>
+        CSS is Cascading (
+        <span style="color: blue; visibility: hidden">Style</span>)
+        Sheet.
+      </li>
+      <li>
+        응답하라 (
+        <span style="color: blue; visibility: hidden">1988</span>
+        ).
+      </li>
+    </ul>
+    <script>
+      function ButtToggle() {
+        var buuu = document.getElementById("butt");
+        var spanArray = document.getElementsByTagName("span");
+
+        if (buuu.value == "on") {
+          buuu.value = "off";
+          for (var i = 0; i < spanArray.length; i++) {
+            var span = spanArray[i];
+            span.style.visibility = "hidden";
+          }
+        } else if (buuu.value == "off") {
+          buuu.value = "on";
+          for (var i = 0; i < spanArray.length; i++) {
+            var span = spanArray[i];
+            span.style.visibility = "visible";
+          }
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,3 +1,5 @@
+package HomeWork;
+
 import java.util.Scanner;
 
 class Menu {

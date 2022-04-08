@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DOM 객체</title>
+    <script>
+      var flag1 = 0;
+      var flag2 = 0;
+
+      function createDIVBack() {
+        var obj = document.getElementById("parent");
+        var newDIV = document.createElement("div");
+        newDIV.innerHTML = "백설공주";
+        newDIV.setAttribute("id", "myDiv");
+        obj.appendChild(newDIV);
+      }
+
+      function createDIVbo() {
+        var obj = document.getElementById("parent2");
+        var newDIV = document.createElement("div");
+        newDIV.innerHTML = "둘다";
+        newDIV.setAttribute("id", "myDiv2");
+        obj.appendChild(newDIV);
+      }
+
+      function onlyOnce() {
+        if (flag1 == 0) {
+          createDIVBack();
+          flag1++;
+        }
+      }
+      function onlyOnce2() {
+        if (flag2 == 0) {
+          createDIVbo();
+          flag2++;
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <h3>정답의 동적 삽입</h3>
+    <hr />
+    <div id="parent">
+      <p>Q. 거울아 거울아 세상에서 누가 가장 예쁘니?</p>
+      <button onclick="onlyOnce()">답보기</button>
+      <p></p>
+    </div>
+    <div id="parent2">
+      <p>Q. 죽느냐 사느냐 어떤 것이 문제인가?</p>
+      <button onclick="onlyOnce2()">답보기</button>
+      <p></p>
+    </div>
+  </body>
+</html>
