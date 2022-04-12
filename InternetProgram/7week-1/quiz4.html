@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>select 객체에서 선택한 과일출력</title>
+    <script>
+      function drawImage(inp) {
+        var img = document.getElementById("fruitimage");
+        img.src = inp;
+      }
+    </script>
+  </head>
+  <body>
+    <h1>라디오 버튼을 클릭하면 이미지를 출력합니다</h1>
+    <hr />
+    <p></p>
+    <form>
+      <input
+        type="radio"
+        value="media/strawberry.jpeg"
+        name="fruit"
+        onclick="drawImage(this.value)"
+      />딸기
+      <input
+        type="radio"
+        value="media/banana.jpeg"
+        name="fruit"
+        onclick="drawImage(this.value)"
+      />바나나
+      <input
+        type="radio"
+        value="media/apple.jpeg"
+        name="fruit"
+        onclick="drawImage(this.value)"
+      />사과
+    </form>
+    <img height="300" id="fruitimage" src="" alt="" />
+  </body>
+</html>
