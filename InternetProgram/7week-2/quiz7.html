@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>계산기</title>
+    <script>
+      function calculrater() {
+          var str = document.getElementById("text");
+          var div = document.getElementById("div");
+
+            div.value = eval(str.value);
+      }
+      function ifEnter(e) {
+        if (e.keyCode == 13) {
+          calculrater();
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <h3>계산기 만들기</h3>
+    <hr />
+    수식을 입력하고 Enter를 입력하세요<br />
+    식 <input type="text" id="text" onkeypress="ifEnter(event)" />
+    <br>
+    값 <input id="div" />
+  </body>
+</html>
