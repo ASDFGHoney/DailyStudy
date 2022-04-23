@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="widtd=device-widtd, initial-scale=1.0">
+    <title>적금계산기</title>
+    <style>
+        #calBtn :hover{
+            color: blue;
+        }
+    </style>
+<script>
+    function Calculater(){
+        var init = document.getElementById("init");
+        var rate = document.getElementById("rate");
+        var period = document.getElementById("period");
+        var inter = document.getElementById("inter");
+        
+        if(init.value > 1000000 || init.value < 0){
+            alert("다시 입력하세요!")
+            return;
+        }
+        if(rate.value > 8  || rate.value < 0){
+            alert("다시 입력하세요!")
+            return;
+        }
+        if(period.value > 20 || period.value <1){
+            alert("다시 입력하세요!")
+            return;
+        }
+        function colorChange(e){
+            e.style.color = blue;
+        }
+        
+    }
+</script>
+</head>
+<body>
+    <h1>No.1: 은행 적금 계산기의 구현</h1>
+    <hr>
+    <form>
+        <table border="1" align="center">
+            <tr>
+                <td>Initial Capitals</td>
+                <td>
+                    <input type="text" name="" id="init"> $
+                </td>
+            </tr>
+            <tr>
+                <td>Annual Interest Rate</td>
+                <td>
+                    <input type="text" name="" id="rate"> %
+                </td>
+            </tr>
+            <tr>
+                <td>Deposit Period</td>
+                <td>
+                    <input type="text" name="" id="period"> year
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><button type="submit" id="calBtn" onclick="Calculater()" onmouseover="colorChange(this)" >Calculate now!</button></td>
+            </tr>
+            <tr>
+                <td>Principal and Interest</td>
+                <td>
+                    <input id="inter"> $
+                </td>
+            </tr>
+        </table>
+    </form>
+    <script>
+        inter.value = eval(init +"+"+rate+"+"+period);
+    </script>
+</body>
+</html>
