@@ -7,6 +7,8 @@
     <title>Document</title>
 
     <script>
+        let SNOWS = 11;
+
         function makeSnow(){
             for(let i=0;i<SNOWS; i++){
                 let divtag="<div class='snow' id=snowobj"+i+">*<div>";
@@ -20,7 +22,7 @@
             for(let i=0;i<SNOWS;i++){
                 x[i] = Math.floor(Math.random()*window.innerWidth-10);
                 y[i] = Math.floor(Math.random()*window.innerHeight+10);
-                speedOfFall[i] = Math.random*2+2;
+                speedOfFall[i] = Math.random()*2+2;
                 speedOfwind[i] = 1;
                 step[i] = Math.random()*0.1+0.05;
 
@@ -37,7 +39,6 @@
                     x[i] = Math.floor(Math.random()*window.innerWidth);
                     y[i] = 0;
                     speedOfFall[i] = Math.random()*2+2;
-
                 }
 
                 if(x[i] >= window.innerWidth-50) x[i] = window.innerWidth = 50;
