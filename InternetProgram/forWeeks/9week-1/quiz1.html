@@ -1,30 +1,48 @@
 <!DOCTYPE html>
 <html>
-<head>
-<title>setTimeout()으로 웹 페이지 자동 연결</title>
-</head>
-<body>
-<h3>이미지에 마우스를 올리고 5초간 그대로 있을 때 사이트로 이동합니다</h3>
-<hr>
-<img id="img" src="media/naver.gif" 
-		onmouseover="startTimer(5000)"
-		onmouseout="cancelTimer()">
-<script>
-var timerID=null;
-function startTimer(time) {
-	// 타이머 시작
-	timerID = setTimeout("load('http://www.naver.com')", time);
+  <head>
+    <title>div 태그에 시계 만들기</title>
+	<style>
+		#time {
+			border: 1px solid;
+			background-color: aliceblue;
+			width: 6em;
+		}
+	</style>
+  </head>
+  <body>
+    <h3>div 태그에 시계 만들기</h3>
+    <p>시계를 클릭하면 시계가 멈추고 다시 클릭하면 가기 시작한다.</p>
+    <hr />
+    <div id="time"></div>
 
-	// 이미지에 마우스 올리면 나타내는 툴팁 메시지
-	document.getElementById("img").title = "타이머 작동 시작...";
-}
-function cancelTimer() {
-	if(timerID !=null) 
-		clearTimeout(timerID); // 타이머 중단
-}
-function load(url) {
-	window.location = url; // 현재 윈도우에  url 사이트 로드 
-}
-</script>
-</body>
+    <script>
+      let handleId = 0;
+      let h1 = document.getElementById("time");
+      let go = document.getElementById("go");
+      let stop = document.getElementById("stop");
+
+      function getTime() {
+        let date = new Date();
+        let hour = date.getHours();
+        let minutes = date.getMinutes();
+        let seconds = date.getSeconds();
+        let time = `${hour < 10 ? "0" + hour : hour}:${
+          minutes < 10 ? "0" + minutes : minutes
+        }:${seconds < 10 ? "0" + seconds : seconds}`;
+        h1.textContent = time;
+      }
+
+      time.onclick = function () {
+        if (handleId == 0) {
+          handleId = setInterval(getTime, 1000);
+        } else {
+          clearInterval(handleId);
+          handleId = 0;
+        }
+      };
+      getTime();
+      handleId = setInterval(getTime, 1000);
+    </script>
+  </body>
 </html>

@@ -2,39 +2,50 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <style>
-      body {
-        background-image: url("snow.jpg");
+        body {
+            background-image: url("snow.jpg");
+        }
+      .snow {
+        font-size: 40px;
+        color: aliceblue;
+        position: absolute;
       }
     </style>
 
     <script>
-      let SNOWS = 11;
+      let SNOWS = 30;
+      let snow = new Array(SNOWS);
+      let x = new Array(SNOWS);
+      let y = new Array(SNOWS);
+      let speedOfFall = new Array(SNOWS);
+      let speedOfwind = new Array(SNOWS);
+      let step = new Array(SNOWS);
 
       function makeSnow() {
         for (let i = 0; i < SNOWS; i++) {
-          let divtag = "<div class='snow' id=snowobj" + i + ">*<div>";
-          document.write(divtag);
+              let divtag = document.createElement("div");
+            divtag.className = "snow";
+            divtag.id = "snowobj"+i;
+            divtag.innerHTML = "*";
+            document.body.append(divtag);
 
           snow[i] = document.getElementById("snowobj" + i);
         }
       }
 
       function initSnowPosition() {
-        window.innerHeight = 600;
-        window.innerWidth = 800;
         for (let i = 0; i < SNOWS; i++) {
           x[i] = Math.floor(Math.random() * window.innerWidth - 10);
           y[i] = Math.floor(Math.random() * window.innerHeight + 10);
+
           speedOfFall[i] = Math.random() * 2 + 2;
           speedOfwind[i] = 1;
           step[i] = Math.random() * 0.1 + 0.05;
 
-          snow[i].style.top = x[i] + "px";
-          snow[i].style.left = y[i] + "px";
+          snow[i].style.top = y[i] + "px";
+          snow[i].style.left = x[i] + "px";
         }
       }
 
@@ -48,7 +59,7 @@
             speedOfFall[i] = Math.random() * 2 + 2;
           }
 
-          if (x[i] >= window.innerWidth - 50) x[i] = window.innerWidth = 50;
+          if (x[i] >= window.innerWidth - 50) x[i] = window.innerWidth - 50;
           else if (x[i] < 0) x[i] = 50;
 
           snow[i].style.top = y[i] + "px";
@@ -56,7 +67,7 @@
 
           speedOfwind[i] += step[i];
         }
-        setTimeout("Fall()", 50);
+        setTimeout(fall, 50);
       }
     </script>
   </head>
