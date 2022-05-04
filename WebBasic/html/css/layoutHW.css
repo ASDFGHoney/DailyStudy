@@ -1,26 +1,53 @@
 .left {
-    float: left;
-    width: 700px;
-    height: 200px;
-    padding: 10px;
+  float: left;
+  width: 700px;
+  height: 200px;
+  padding: 10px;
+  background-color: #eee;
 }
 
-.right , .right>img{
-    float: left;
-    width: 300px;
-    height: 200px;
-    padding: 10px;
+.right,
+.right > img {
+  float: left;
+  width: 300px;
+  height: 200px;
+  padding: 10px;
 }
 
-.photo{
-    float:left;
+.photo {
+  float: left;
 }
 
 .name {
-    padding-left:60px;
-    padding-top:10px;
+  padding-left: 60px;
+  padding-top: 10px;
 }
 
 .photo > img {
-    width: 50px;
+  width: 50px;
+}
+
+.doc {
+  clear: both;
+}
+
+.container {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.navbar li {
+  /* selecter 문법중 공백은 ~안에있는 이라는 뜻 */
+  /* > 직계 자식만 적용 */
+  display: inline-block;
+  width: 60px;
+  text-align: center;
+  background: #eee;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.navbar a {
+  font-size: 16px;
 }
