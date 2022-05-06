@@ -4,9 +4,9 @@
     <meta charset="UTF-8" />
     <title>Document</title>
     <style>
-        body {
-            background-image: url("snow.jpg");
-        }
+      body {
+        background-image: url("snow.jpg");
+      }
       .snow {
         font-size: 40px;
         color: aliceblue;
@@ -25,11 +25,11 @@
 
       function makeSnow() {
         for (let i = 0; i < SNOWS; i++) {
-              let divtag = document.createElement("div");
-            divtag.className = "snow";
-            divtag.id = "snowobj"+i;
-            divtag.innerHTML = "*";
-            document.body.append(divtag);
+          let divtag = document.createElement("div");
+          divtag.className = "snow";
+          divtag.id = "snowobj" + i;
+          divtag.innerHTML = "*";
+          document.body.append(divtag);
 
           snow[i] = document.getElementById("snowobj" + i);
         }

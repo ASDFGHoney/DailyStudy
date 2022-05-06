@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>quiz2</title>
+    <style>
+      input {
+        width: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <h3>학점별로 학생 수를 입력하면 파이차트로 비율 그리기</h3>
+    <hr />
+    A : <input type="number" id="grA" value="0" min="0" max="100" /> 명/ B :
+    <input type="number" id="grB" value="0" min="0" max="100" /> 명/ C :
+    <input type="number" id="grC" value="0" min="0" max="100" /> 명/ <br />
+    D : <input type="number" id="grD" value="0" min="0" max="100" /> 명/ F :
+    <input type="number" id="grF" value="0" min="0" max="100" /> 명/
+    <button id="drawBtn" onclick="btnClick()">차트그리기</button>
+
+    <br />
+    <canvas
+      id="myCanvas"
+      style="background-color: aliceblue; margin: 10px"
+      width="600"
+      height="400"
+    ></canvas>
+
+    <script>
+      function btnClick() {
+        const canvas = document.getElementById("myCanvas");
+        const context = canvas.getContext("2d");
+        context.clearRect(0, 0, 600, 400);
+        const A = parseInt(document.getElementById("grA").value);
+        const B = parseInt(document.getElementById("grB").value);
+        const C = parseInt(document.getElementById("grC").value);
+        const D = parseInt(document.getElementById("grD").value);
+        const F = parseInt(document.getElementById("grF").value);
+
+        var width = canvas.clientWidth;
+        var height = canvas.clientHeight;
+        var colors = ["blue", "green", "yellow", "magenta", "red"];
+        var grades = ["A", "B", "C", "D", "F"];
+
+        var values = [A, B, C, D, F];
+        const radius = 160;
+
+        var sum = A + B + C + D + F;
+
+        var radArr = [
+          (A / sum) * 360,
+          (B / sum) * 360,
+          (C / sum) * 360,
+          (D / sum) * 360,
+          (F / sum) * 360,
+        ];
+
+        var temp = 0;
+        var textx = 40;
+
+        for (var i = 0; i < radArr.length; i++) {
+          var rad = radArr[i];
+          context.save();
+          context.beginPath();
+          context.moveTo(width / 2, height / 2);
+          if (i == 0) {
+            context.arc(
+              width / 2,
+              height / 2,
+              radius,
+              (Math.PI / 180) * 0,
+              (Math.PI / 180) * rad,
+              false
+            );
+            temp = rad;
+          } else {
+            context.arc(
+              width / 2,
+              height / 2,
+              radius,
+              (Math.PI / 180) * temp,
+              (Math.PI / 180) * (temp + rad),
+              false
+            );
+            temp = temp + rad;
+          }
+          context.font = "16px sans-serif";
+          context.fillStyle = "blue";
+          context.fillText(
+            `${grades[i]} 학점 ${Math.floor((rad * 100) / 360)}% : ${
+              colors[i]
+            }`,
+            0,
+            textx
+          );
+          textx += 17;
+
+          context.fillStyle = colors[i];
+          context.fill();
+          context.restore();
+        }
+      }
+    </script>
+  </body>
+</html>
