@@ -1,8 +1,45 @@
 body {
   margin: 0px;
 }
+td,
+th {
+  /* border: 1px solid black; */
+}
+table {
+  border-collapse: collapse;
+}
+.cart-table th:nth-child(2) {
+  width: 400px;
+}
+.cart-table td,
+.cart-table th {
+  padding: 15px;
+  border-bottom: 1px solid #ced3de;
+}
 
-div {
+.btn {
+  padding: 15px;
+  font-size: 20px;
+  border: none;
+  border-radius: 10px;
+  background-color: coral;
+  color: white;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: chocolate;
+}
+.btn:focus {
+  background-color: grey;
+}
+.btn:active {
+  background-color: brown;
+}
+
+div,
+input,
+textarea {
   box-sizing: border-box;
 }
 .main-background {
@@ -59,4 +96,47 @@ div {
 
 .collapse {
   height: 1px;
+}
+
+.form-background {
+  background-color: black;
+  padding: 30px;
+}
+.form-white {
+  background-color: white;
+  padding: 30px;
+  width: 80%;
+  max-width: 600px;
+  margin: auto;
+}
+
+.form-input {
+  padding: 10px;
+  font-size: 20px;
+  border: 1px solid black;
+  border-radius: 5px;
+  width: 100%;
+  box-sizing: border-box;
+}
+.w-50 {
+  width: 50%;
+  float: left;
+  padding: 10px;
+}
+.w-100 {
+  width: 100%;
+  padding: 10px;
+}
+
+.cart-background {
+  width: 100%;
+  background-color: #c2d3de;
+  padding: 30px;
+}
+.cart-table {
+  width: 100%;
+  max-width: 700px;
+  margin: auto;
+  background: white;
+  border-radius: 10px;
 }
