@@ -84,5 +84,6 @@ app.delete("/delete", function (요청, 응답) {
 
   db.collection("post").deleteOne(요청.body, function (에러, 결과) {
     console.log("삭제완료");
+    응답.status(200).send({ message: "성공했습니다." }); // 200 요청 성공이라는 뜻, 400 요청 실패
   });
 });
