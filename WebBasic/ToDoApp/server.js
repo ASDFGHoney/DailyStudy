@@ -41,35 +41,6 @@ app.get("/write", function (요청, 응답) {
 });
 
 // 어떤 사람이 /add 경로로 post 요청을 하면 data두개를 post라는 이름을 가진 collecrion에 두개 데이터 저장하기
-app.post("/add", function (요청, 응답) {
-  db.collection("counter").findOne(
-    { name: "게시물갯수" },
-    function (에러, 결과) {
-      console.log(결과.totalPost);
-      var 총게시물갯수 = 결과.totalPost;
-
-      db.collection("post").insertOne(
-        { _id: 총게시물갯수 + 1, 제목: 요청.body.title, 날짜: 요청.body.date }, //auto increment
-        function (에러, 결과) {
-          console.log("저장완료");
-          db.collection("counter").updateOne(
-            { name: "게시물갯수" },
-            { $inc: { totalPost: 1 } }, // $set 는 operater
-            function (에러, 결과) {
-              if (에러) {
-                return console.log(에러);
-              }
-            }
-          );
-        }
-      );
-    }
-  );
-
-  응답.send("전송완료");
-  console.log(요청.body.date);
-  console.log(요청.body.title);
-});
 
 app.get("/list", function (요청, 응답) {
   // 디비에 저장된 post라는 collection안의 모든 데이터를 꺼내주세요.
@@ -79,16 +50,6 @@ app.get("/list", function (요청, 응답) {
       console.log(결과);
       응답.render("list.ejs", { posts: 결과 });
     });
-});
-
-app.delete("/delete", function (요청, 응답) {
-  console.log(요청.body);
-  요청.body._id = parseInt(요청.body._id);
-
-  db.collection("post").deleteOne(요청.body, function (에러, 결과) {
-    console.log("삭제완료");
-    응답.status(200).send({ message: "성공했습니다." }); // 200 요청 성공이라는 뜻, 400 요청 실패
-  });
 });
 
 app.get("/detail/:id", function (요청, 응답) {
@@ -199,11 +160,93 @@ passport.deserializeUser(function (아이디, done) {
   });
 });
 
+app.post("/register", function (req, res) {
+  db.collection("login").insertOne(
+    { id: req.body.id, pw: req.body.pw },
+    function (에러, 결과) {
+      res.redirect("/");
+    }
+  );
+});
+
+app.post("/add", function (요청, 응답) {
+  db.collection("counter").findOne(
+    { name: "게시물갯수" },
+    function (에러, 결과) {
+      console.log(결과.totalPost);
+      var 총게시물갯수 = 결과.totalPost;
+
+      var 저장할거 = {
+        _id: 총게시물갯수 + 1,
+        작성자: 요청.user._id,
+        제목: 요청.body.title,
+        날짜: 요청.body.date,
+      };
+      db.collection("post").insertOne(
+        저장할거, //auto increment
+        function (에러, 결과) {
+          console.log("저장완료");
+          db.collection("counter").updateOne(
+            { name: "게시물갯수" },
+            { $inc: { totalPost: 1 } }, // $set 는 operater
+            function (에러, 결과) {
+              if (에러) {
+                return console.log(에러);
+              }
+            }
+          );
+        }
+      );
+    }
+  );
+
+  응답.send("전송완료");
+  console.log(요청.body.date);
+  console.log(요청.body.title);
+});
+
+app.delete("/delete", function (요청, 응답) {
+  console.log(요청.body);
+  요청.body._id = parseInt(요청.body._id);
+
+  var 삭제할데이터 = { _id: 요청.body._id, 작성자: 요청.user._id };
+
+  db.collection("post").deleteOne(삭제할데이터, function (에러, 결과) {
+    console.log("삭제완료");
+    응답.status(200).send({ message: "성공했습니다." }); // 200 요청 성공이라는 뜻, 400 요청 실패
+  });
+});
+
+// app.get("/search", (요청, 응답) => {
+//   console.log(요청.query.value);
+//   db.collection("post")
+//     .find({ $text: { $search: 요청.query.value } })
+//     .toArray((에러, 결과) => {
+//       응답.render("search.ejs", { posts: 결과 });
+//     });
+// });
 app.get("/search", (요청, 응답) => {
-  console.log(요청.query.value);
+  var 검색조건 = [
+    {
+      $search: {
+        index: "titleSearch",
+        text: {
+          query: 요청.query.value,
+          path: "제목",
+        },
+      },
+    },
+    { $project: { 제목: 1, _id: 0, score: { $meta: "searchScore" } } },
+  ];
+
   db.collection("post")
-    .find({ 제목: 요청.query.value })
+    .aggregate(검색조건)
     .toArray((에러, 결과) => {
+      console.log("🚀 ~ file: server.js ~ line 227 ~ .toArray ~ 결과", 결과);
       응답.render("search.ejs", { posts: 결과 });
     });
 });
+
+app.use("/shop", require("./routes/shop.js"));
+
+app.use("/board/sub", require("./routes/board.js"));

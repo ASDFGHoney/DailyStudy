@@ -9,17 +9,20 @@
 	Class.forName("com.mysql.cj.jdbc.Driver");
 	Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/hwdb","root","open9711@@");
 	Statement stat = connect.createStatement();
-	String sql_2 = "select * from websites";
+	String sql_2 = "select * from members";
 	ResultSet rs = stat.executeQuery(sql_2);
 	
 	
-	out.println("ID"+" "+"Name "+" "+"URL <br>");
+	out.println("Name "+" "+"Sex "+" "+"Hobby "+" "+"Phone number <br>");
+	out.println("------------------------------- <br>");
 	while (rs.next()) {
 		
-		out.println(rs.getInt("id")+"  "+rs.getString("name")+"  "+rs.getString("url")+" <br>");
+		out.println(rs.getString("name")+"  "+rs.getString("sex")+"  "+rs.getString("hobby")+"  "+rs.getString("pnum")+" <br>");
+		out.println("------------------------------- <br>");
 	
 	} stat.close();
-	connect.close(); %>
+	connect.close();
+	%>
 
 </body> 
 </html>
