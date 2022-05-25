@@ -217,6 +217,19 @@ app.delete("/delete", function (요청, 응답) {
   });
 });
 
+app.post("/addChat", function (요청, 응답) {
+  console.log("🚀 ~ file: server.js ~ line 221 ~ 요청", 요청.body, 요청.user);
+
+  var 저장할거 = {
+    member: [요청.body._id, 요청.user._id.toString()],
+    date: new Date(),
+    title: "채팅방이름",
+  };
+  db.collection("chatroom").insertOne(저장할거, function (에러, 결과) {
+    console.log("chatroom db 저장완료");
+  });
+});
+
 // app.get("/search", (요청, 응답) => {
 //   console.log(요청.query.value);
 //   db.collection("post")
@@ -225,6 +238,7 @@ app.delete("/delete", function (요청, 응답) {
 //       응답.render("search.ejs", { posts: 결과 });
 //     });
 // });
+
 app.get("/search", (요청, 응답) => {
   var 검색조건 = [
     {
@@ -250,3 +264,38 @@ app.get("/search", (요청, 응답) => {
 app.use("/shop", require("./routes/shop.js"));
 
 app.use("/board/sub", require("./routes/board.js"));
+
+let multer = require("multer");
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "./public/image");
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
+  },
+  filefilter: function (req, file, cb) {},
+});
+var upload = multer({ storage: storage });
+
+app.get("/upload", (req, res) => {
+  res.render("upload.ejs");
+});
+
+app.post("/upload", upload.single("프로필"), (req, res) => {
+  res.send("업로드 완료");
+});
+
+app.get("/image/:imageName", (req, res) => {
+  res.sendFile(__dirname + "/public/image" + req.params.imageName);
+});
+
+app.get("/chat", 로그인했니, (req, res) => {
+  db.collection("chatroom")
+    .find({
+      $or: [{ member: req.user._id.toString() }],
+    })
+    .toArray(function (에러, 결과) {
+      console.log(결과, req.user._id.toString());
+      res.render("chat.ejs", { posts: 결과 });
+    });
+});

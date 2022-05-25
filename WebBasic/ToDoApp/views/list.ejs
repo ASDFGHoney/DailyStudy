@@ -51,6 +51,9 @@
           <button class="delete btn btn-danger" data-id="<%=posts[i]._id%>">
             삭제
           </button>
+          <button class="chat btn btn-danger" data-id="<%=posts[i].작성자%>">
+            chat
+          </button>
         </li>
         <% } %>
       </ul>
@@ -70,6 +73,23 @@
             // 요청이 성공하면 실행할 함수
             console.log("성공했어염");
             지금누른거.parent("li").fadeOut();
+          })
+          .fail(function (xhr, textStatus, errorThrown) {
+            console.log(xhr, textStatus, errorThrown);
+          });
+      });
+      $(".chat").click(function (e) {
+        var 작성자 = e.target.dataset.id;
+        var 지금누른거 = $(this);
+
+        $.ajax({
+          method: "POST",
+          url: "/addChat",
+          data: { _id: 작성자 },
+        })
+          .done(function (결과) {
+            // 요청이 성공하면 실행할 함수
+            console.log("성공했어염");
           })
           .fail(function (xhr, textStatus, errorThrown) {
             console.log(xhr, textStatus, errorThrown);
