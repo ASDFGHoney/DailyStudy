@@ -299,3 +299,46 @@ app.get("/chat", 로그인했니, (req, res) => {
       res.render("chat.ejs", { posts: 결과 });
     });
 });
+
+app.post("/message", 로그인했니, function (req, res) {
+  var 저장할거 = {
+    parent: req.body.parent,
+    content: req.body.content,
+    userid: req.user._id,
+    date: new Date(),
+  };
+
+  db.collection("message")
+    .insertOne(저장할거)
+    .then(() => {
+      console.log("db저장성공");
+      res.send("db저장성공");
+    });
+});
+
+app.get("/message/:id", 로그인했니, function (요청, 응답) {
+  응답.writeHead(200, {
+    Connection: "keep-alive",
+    "Content-Type": "text/event-stream",
+    "Cache-Control": "no-cache",
+  });
+
+  db.collection("message")
+    .find({ parent: 요청.params.id })
+    .toArray()
+    .then((결과) => {
+      응답.write("event: test\n");
+      응답.write("data: " + JSON.stringify(결과) + "\n\n");
+    });
+  const pipeline = [{ $match: { "fullDocument.parent": 요청.params.id } }];
+  const collection = db.collection("message");
+  const changeStream = collection.watch(pipeline);
+  changeStream.on("change", (result) => {
+    console.log(
+      "🚀 ~ file: server.js ~ line 338 ~ changeStream.on ~ result.fullDocument",
+      result.fullDocument
+    );
+    응답.write("event: test\n");
+    응답.write("data: " + JSON.stringify([result.fullDocument]) + "\n\n");
+  });
+});

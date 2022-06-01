@@ -1,32 +1,47 @@
 package week13;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.Scanner;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.StringTokenizer;
 
 public class WordCount {
 	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		System.out.print("Source file name: ");
-		String src = sc.next();
-		System.out.print("Dest file name: ");
-		String dest = sc.next();
-		int c;
-		byte[] buf = new byte[1024];
+		String stkTmp;
+		int index;
+		ArrayList<String> words = new ArrayList<>();
+		ArrayList<Integer> wordCounter = new ArrayList<>();
+		System.out.println("송치헌/컴퓨터공학과/12171637\n");
+
 		try {
-			FileInputStream fi = new FileInputStream(src);
-			FileOutputStream fo = new FileOutputStream(dest);
-			c = fi.read(buf);
-			do {
-				fo.write(buf);
-				c = fi.read(buf);
-			} while (c == 1024);
-			fi.close();
-			fo.close();
-			System.out.println("ms : "+src + "를 " + dest + "로 복사하였습니다.");
-		} catch (IOException e) {
-			System.out.println("파일 복사 오류");
+			BufferedReader reader = new BufferedReader(new FileReader("hw3.txt"));
+			String line = reader.readLine();
+			while (line != null) {
+				StringTokenizer stk = new StringTokenizer(line, " ,.:;?![]()’");
+				while(stk.hasMoreTokens()){
+					stkTmp = stk.nextToken().toLowerCase();
+					index = words.indexOf(stkTmp);
+					if (index == -1){
+						words.add(stkTmp);
+						wordCounter.add(1);
+					}else{
+						wordCounter.set(index, wordCounter.get(index)+1);
+					}
+				}
+				line = reader.readLine();
+			}
+
+			BufferedWriter writer = new BufferedWriter(new FileWriter("hw3_out.txt", false));
+
+			for(int i = 0 ; i < words.size(); i++) {
+				writer.write(words.get(i)+"\t"+wordCounter.get(i));
+				writer.newLine();
+			}
+
+			writer.flush();
+			writer.close();
+			reader.close();
+		} catch (Exception e) {
+			System.out.println(e);
 		}
 	}
 }

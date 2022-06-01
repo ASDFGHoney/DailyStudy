@@ -10,6 +10,8 @@
     />
     <link rel="stylesheet" href="/public/main.css" />
 
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
     <title>Document</title>
   </head>
   <body>
@@ -19,9 +21,9 @@
         <div class="col-3">
           <ul class="list-group chat-list">
             <% for(var i = 0; i < posts.length ;i++){ %>
-            <li class="list-group-item" data-id="">
+            <li class="list-group-item" data-id="<%= posts[i]._id%>">
               <h6><%=posts[i].title %></h6>
-              <h6 class="text-small">채팅방설명</h6>
+              <h6 class="text-small"><%=posts[i].member[0]%></h6>
             </li>
             <% } %>
           </ul>
@@ -43,20 +45,41 @@
       </div>
     </div>
 
-    <script
-      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-      crossorigin="anonymous"
-    ></script>
+    <script>
+      var 지금누른채팅방id;
+
+      var eventSource;
+      $(".list-group-item").click(function () {
+        지금누른채팅방id = this.dataset.id;
+        $(".chat-content").html("");
+        if (eventSource != undefined) {
+          eventSource.close();
+        }
+        eventSource = new EventSource("/message/" + 지금누른채팅방id);
+        console.log(
+          "🚀 ~ file: chat.ejs ~ line 56 ~ 지금누른채팅방id",
+          지금누른채팅방id
+        );
+
+        eventSource.addEventListener("test", function (e) {
+          var 가져온거 = JSON.parse(e.data);
+          가져온거.forEach(function (a) {
+            $(".chat-content").append(
+              '<li><span class="chat-box">' + a.content + "</span></li>"
+            );
+          });
+        });
+      });
+      $("#send").click(function () {
+        var 채팅내용 = $("#chat-input").val();
+        var 보낼거 = {
+          parent: 지금누른채팅방id,
+          content: 채팅내용,
+        };
+        $.post("/message", 보낼거).then(() => {
+          console.log("전송성공");
+        });
+      });
+    </script>
   </body>
 </html>
