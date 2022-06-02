@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Login test</title>
+    <style>
+      body {
+        background-image: url(images/login.png);
+        background-size: 100%;
+        background-repeat: no-repeat;
+      }
+    </style>
+    <script>
+      function myFunction() {
+        var $uname = uname.value;
+        var $upwd = upwd.value;
+
+        if (!$uname) {
+          uname_msg, (innerHTML = "Please input username");
+        }
+        if (!$upwd) {
+          upwd_msg.innerHTML = "Please input password!";
+        }
+
+        var xhr = new XMLHttpRequest();
+
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState == 4 && xhr.status == 200) {
+            var result = xhr.responseText;
+            if (result == 1) {
+              alert("Login successful");
+              location.href = "https://www.naver.com/";
+            } else {
+              alert("Login failure");
+            }
+          }
+        };
+        xhr.open("GET", "/pro/v1/login/" + $uname + "&" + $upwd, true);
+        xhr.send();
+      }
+    </script>
+  </head>
+  <body>
+    <div style="text-align: center; margin-top: 120px">
+      <h2>User login test</h2>
+      <table style="margin-left: 40%">
+        <marquee width="200" scrolldelay="250">User login</marquee>
+        <tr>
+          <td style="color: skyblue">Username :</td>
+          <td><input type="text" name="username" id="uname" size="21" /></td>
+        </tr>
+        <tr>
+          <td style="color: skyblue">Password :</td>
+          <td><input type="password" name="password" id="upwd" size="21" /></td>
+        </tr>
+      </table>
+      <button type="button" onclick="myFunction()">Login</button>
+    </div>
+  </body>
+</html>
