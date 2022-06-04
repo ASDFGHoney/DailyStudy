@@ -2,12 +2,17 @@ package com.example.demo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 @SpringBootApplication
-public class MysqldemoApplication {
+public class MysqlApplication extends SpringBootServletInitializer {
+  public static void main(String[] args) {
+    SpringApplication.run(MysqlApplication.class, args);
+  }
 
-	public static void main(String[] args) {
-		SpringApplication.run(MysqldemoApplication.class, args);
-	}
-
+  @Override
+  protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+    return builder.sources(MysqlApplication.class);
+  }
 }
