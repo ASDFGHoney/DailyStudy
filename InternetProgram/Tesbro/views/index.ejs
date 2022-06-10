@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TesBroPub</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <%- include("nav.html") %>
+      <div
+        id="carouselExampleDark"
+        class="carousel carousel-dark slide"
+        data-bs-ride="carousel"
+      >
+        <div class="carousel-indicators">
+          <button
+            type="button"
+            data-bs-target="#carouselExampleDark"
+            data-bs-slide-to="0"
+            class="active"
+            aria-current="true"
+            aria-label="Slide 1"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselExampleDark"
+            data-bs-slide-to="1"
+            aria-label="Slide 2"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselExampleDark"
+            data-bs-slide-to="2"
+            aria-label="Slide 3"
+          ></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active" data-bs-interval="10000">
+            <img src="image/image.png" class="d-block w-100" alt="..." />
+            <div class="carousel-caption d-none d-md-block"></div>
+          </div>
+          <div class="carousel-item" data-bs-interval="2000">
+            <img src="image/image0.jpeg" class="d-block w-100" alt="..." />
+            <div class="carousel-caption d-none d-md-block"></div>
+          </div>
+          <div class="carousel-item">
+            <img src="image/image1.jpeg" class="d-block w-100" alt="..." />
+            <div class="carousel-caption ]d-none d-md-block"></div>
+          </div>
+        </div>
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#carouselExampleDark"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#carouselExampleDark"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+
+      <hr />
+      <div class="card-group">
+        <div class="card">
+          <img src="image/food1.png" class="card-img-top" alt="..." />
+          <div class="card-body">
+            <h5 class="card-title">나가사키짬뽕탕</h5>
+            <p class="card-text">
+              나가사키 짬뽕은 진한 육수에 고기, 어패류, 채소 등을 듬뿍 넣고 끓인
+              면 요리이며 쫄깃한 면발이 특징이다.
+            </p>
+            <p class="card-text">
+              <small class="text-muted">Last updated 3 days ago</small>
+            </p>
+          </div>
+        </div>
+        <div class="card">
+          <img src="image/food2.png" class="card-img-top" alt="..." />
+          <div class="card-body">
+            <h5 class="card-title">아귀포 & 땅콩</h5>
+            <p class="card-text">
+              짭쪼름 하니 소주를 부르는 아귀포와 고소한 땅콩.
+            </p>
+            <p class="card-text">
+              <small class="text-muted">Last updated 3 days ago</small>
+            </p>
+          </div>
+        </div>
+        <div class="card">
+          <img src="image/food3.png" class="card-img-top" alt="..." />
+          <div class="card-body">
+            <h5 class="card-title">얼그레이 하이볼</h5>
+            <p class="card-text">
+              나혼자 산다에서 박나래가 먹었던 얼그레이 하이볼!!
+            </p>
+            <p class="card-text">
+              <small class="text-muted">Last updated 3 days ago</small>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="card-group">
+        <div class="card">
+          <img src="image/food4.jpeg" class="card-img-top" alt="..." />
+          <div class="card-body">
+            <h5 class="card-title">육사시미</h5>
+            <p class="card-text">
+              매일 들어오는 신선한 대구식 뭉디기 육사시미.
+            </p>
+            <p class="card-text">
+              <small class="text-muted">Last updated 4 days ago</small>
+            </p>
+          </div>
+        </div>
+        <div class="card">
+          <img src="image/food5.jpeg" class="card-img-top" alt="..." />
+          <div class="card-body">
+            <h5 class="card-title">육전</h5>
+            <p class="card-text">질좋은 한우로 만든 육전.</p>
+            <p class="card-text">
+              <small class="text-muted">Last updated 4 days ago</small>
+            </p>
+          </div>
+        </div>
+        <div class="card">
+          <img src="image/food6.jpeg" class="card-img-top" alt="..." />
+          <div class="card-body">
+            <h5 class="card-title">오뎅탕</h5>
+            <p class="card-text">
+              부산에서 공수한 오뎅으로 만든 맛있는 오뎅탕.
+            </p>
+            <p class="card-text">
+              <small class="text-muted">Last updated 3 days ago</small>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
