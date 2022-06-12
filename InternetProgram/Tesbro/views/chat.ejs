@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="/public/main.css" />
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+    <title>Document</title>
+  </head>
+  <body>
+    <%- include("nav.html") %>
+    <div class="container p-4 detail">
+      <div class="row">
+        <div class="col-3">
+          <ul class="list-group chat-list">
+            <li class="list-group-item" data-id="<%= posts._id%>">
+              <h6>질문"<%=posts.title %>" 관련<br />대화방입니다.</h6>
+            </li>
+          </ul>
+        </div>
+
+        <div class="col-9 p-0">
+          <div class="chat-room">
+            <ul class="list-group chat-content"></ul>
+            <div class="input-group">
+              <input class="form-control" id="chat-input" />
+              <button class="btn btn-secondary" id="send">전송</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      var 지금누른채팅방id;
+
+      var eventSource;
+      $(".list-group-item").click(function () {
+        지금누른채팅방id = this.dataset.id;
+        $(".chat-content").html("");
+        if (eventSource != undefined) {
+          eventSource.close();
+        }
+        eventSource = new EventSource("/message/" + 지금누른채팅방id);
+        console.log(
+          "🚀 ~ file: chat.ejs ~ line 56 ~ 지금누른채팅방id",
+          지금누른채팅방id
+        );
+
+        eventSource.addEventListener("test", function (e) {
+          var 가져온거 = JSON.parse(e.data);
+          가져온거.forEach(function (a) {
+            if (a.userid.toString() == "62a5916de41906bdbd6b4bd4") {
+              $(".chat-content").append(
+                '<li><span class="chat-box">' + a.content + "</span></li>"
+              );
+            } else {
+              $(".chat-content").append(
+                '<li><span class="chat-box mine">' + a.content + "</span></li>"
+              );
+            }
+          });
+        });
+      });
+
+      $("#send").click(function () {
+        var 채팅내용 = $("#chat-input").val();
+        var 보낼거 = {
+          parent: 지금누른채팅방id,
+          content: 채팅내용,
+        };
+        $.post("/message", 보낼거).then(() => {
+          console.log("전송성공");
+        });
+      });
+    </script>
+  </body>
+</html>
