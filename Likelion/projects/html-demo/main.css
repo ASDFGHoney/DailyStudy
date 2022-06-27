@@ -2,6 +2,7 @@
   width: 1280px;
   height: 1280px;
   background-color: yellow;
+  padding: 1px;
 }
 
 .inner-box {
@@ -11,4 +12,90 @@
   padding: 10px;
   color: aliceblue;
   margin: 10px;
+  border: 5px solid black;
+}
+img.square {
+width: 150px;
+  height: 150px;
+  object-fit: cover;
+}
+
+#flex-container {
+  display: flex;
+  flex-direction: row-reverse;
+
+  justify-content: space-between;
+  align-items: center;
+
+  width: 90vw;
+  height: 90vh;
+  background-color: aliceblue;
+}
+.flex-child {
+  width: 250px;
+  height: 250px;
+  background-color: rgb(80, 80, 235);
+  margin: 10px;
+  font-size: 5vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 80vw;
+  height: 100px;
+  background-color: orange;
+  box-sizing: border-box;
+}
+
+#logo {
+  margin-left: 40px;
+}
+
+#controls {
+  margin: 10px;
+  display: flex;
+}
+
+#position-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: relative;
+  width: 90vw;
+  height: 200vh;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+#red-square {
+  width: 25vh;
+  height: 25vh;
+
+  background-color: red;
+}
+#yellow-square {
+  /* position: relative;
+  top: 50px;
+  right: 50px; */
+
+  position: fixed;
+  top: 50px;
+  right: 50px;
+
+  width: 25vh;
+  height: 25vh;
+
+  background-color: yellow;
+}
+#green-square {
+  width: 25vh;
+  height: 25vh;
+
+  background-color: green;
 }

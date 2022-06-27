@@ -1,0 +1,33 @@
+.parent {
+    width: 80vw;
+    height: 80vh;
+    box-sizing: border-box;
+}
+.flex {
+    display: flex;
+    border-radius: 25px 25px 0px 0px;
+    width: max-content;
+    overflow: hidden;
+}
+.box1 {
+    width: 400px;
+    height: 450px;
+    color: white;
+    background-color: #245750;
+    box-sizing: border-box;
+    font-size: 2rem;
+    font-weight: 600;
+    padding: 100px 0px 00px 30px;
+}
+
+.box2 {
+    width: 300px;
+    height: 450px;
+    color: white;
+    background-color: #ece7db;
+    box-sizing: border-box;
+}
+
+.position {
+}
+  

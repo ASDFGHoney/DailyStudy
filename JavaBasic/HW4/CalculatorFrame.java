@@ -1,6 +1,8 @@
 package HW4;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.*;
 
 public class CalculatorFrame extends JFrame {
@@ -29,6 +31,7 @@ class CenterPanel extends JPanel {
 	public CenterPanel() {
 		setLayout(new GridLayout(5,4,5,5));
 
+
 		add(new JButton(""));
 		JButton del = new JButton("DEL");
 		add(del);
@@ -40,6 +43,29 @@ class CenterPanel extends JPanel {
 		for(int i=1; i<10; i++) {
 			b[i] = new JButton(Integer.toString(i));
 			add(b[i]);
+			b[i].addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					JButton b = (JButton)e.getSource();
+					if(label.getText() == "0") {
+						label.setText("");
+					}
+					String labeltext = label.getText();
+					String text = b.getText();
+					String newtext = labeltext + text;
+					int n = newtext.length();
+					if(n <= 10) {
+						label.setText(newtext);
+					}
+					if(info.getText().contains("=") == true) {
+						info.setText("");
+						label.setText(b.getText());
+						result = 0;
+						num = 0;
+					}
+				}
+			});
 			if(i == 3){
 				add(new JButton("x"));
 			}
