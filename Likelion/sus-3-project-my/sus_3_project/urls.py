@@ -1,4 +1,4 @@
-"""django_practice URL Configuration
+"""sus_3_project URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.0/topics/http/urls/
@@ -18,6 +18,5 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("", include("landing.urls")),
-    path("html-demo/", include("html_demo.urls")),
+    path('blog/', include("blog.urls")),
 ]
