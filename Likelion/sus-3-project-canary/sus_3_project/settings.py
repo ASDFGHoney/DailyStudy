@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "blog",
     "survey",
     "nn_board",
+    "landing",
 ]
 
 MIDDLEWARE = [

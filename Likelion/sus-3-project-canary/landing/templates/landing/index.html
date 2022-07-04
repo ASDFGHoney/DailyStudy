@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>inner-landing</title>
+</head>
+<body>
+  <h1>inner-landing</h1>
+  <h2>{{ now|date:"Y-m-d" }}</h2>
+  <p>
+    오늘의 날씨는 {{weather}}이며 온도는 {{temperature}} 입니다.
+  </p>
+  <p>
+    어제의 날씨는 {{weather_data.weather}}이며 온도는 {{weather_data.temperature}} 입니다.
+  </p>
+
+  <p>
+    <ol>
+      <li>{{top_average.0}}</li>
+      <li>{{top_average.1}}</li>
+      <li>{{top_average.2}}</li>
+    </ol>
+  </p>
+
+  <p>
+    <ol>
+      <li>{{top_hitters.0.name}}</li>
+      <li>{{top_hitters.1.name}}</li>
+      <li>{{top_hitters.2.name}} {{top_hitters.2.average}} </li>
+    </ol>
+  </p>
+<ol>
+
+  {% for top in top_average %}
+  <li>{{top}}</li>
+  {% csrf_token %}
+  {% endfor %}
+
+</ol>
+
+<p>
+  오늘의 기온은
+  {% if not temperature %}
+  알 수 없습니다.
+  {% elif temperature < 10 %}
+  {{temperature}}도 이며 매우 춥습니다.
+  {% elif temperature > 30 %}
+  {{temperature}}도 이며 매우 덥습니다.
+  {% else %}
+  {{temperature}}도 이며 포근합니다.
+  {% endif %}
+</p>
+
+</body>
+</html>

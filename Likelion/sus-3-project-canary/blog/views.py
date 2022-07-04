@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-
+from django.urls import reverse
 from blog.models import Article
 
 
@@ -22,7 +22,7 @@ def blog_post_create(request):
         new_post.content = request.POST.get("content")
         new_post.save()
         
-        return redirect("/blog-url/home/")
+        return redirect("blog:home")
     elif request.method == "GET":
         return render(request, "blog-html/post-create.html")
 
@@ -74,3 +74,5 @@ def blog_post_delete(request, target_id):
             "blog-html/post-delete.html",
             context
         )
+
+    
